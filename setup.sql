@@ -29,3 +29,46 @@ INSERT INTO user (
     "Medina",
     "Books"
 );
+
+-- Create the vehicle table --
+
+CREATE TABLE vehicle (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    brand VARCHAR(45),
+    model VARCHAR(45),
+    color VARCHAR(25),
+    year INTEGER,
+    userid INTEGER,
+    active BOOLEAN DEFAULT 1,
+    FOREIGN KEY (id) REFERENCES user(id)
+);
+
+-- Insert test records --
+
+INSERT INTO vehicle (
+    brand,
+    model,
+    color,
+    year,
+    userid
+) VALUES (
+    "Mitsubishi",
+    "Lancer",
+    "Red",
+    2005,
+    1
+);
+
+INSERT INTO vehicle (
+    brand,
+    model,
+    color,
+    year,
+    userid
+) VALUES (
+    "Chrysler",
+    "Cruiser",
+    "Gray",
+    2001,
+    2
+);

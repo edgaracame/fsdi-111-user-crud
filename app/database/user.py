@@ -1,4 +1,4 @@
-from app.database import get_db
+from app.database import get_db_user
 
 
 def output_formatter(results):
@@ -16,7 +16,7 @@ def output_formatter(results):
 
 
 def scan():
-    cursor = get_db().execute(
+    cursor = get_db_user().execute(
         "SELECT * FROM user WHERE active = 1", ()
     )
     results = cursor.fetchall()
@@ -25,7 +25,7 @@ def scan():
 
 
 def select_by_id(pk):
-    cursor = get_db().execute(
+    cursor = get_db_user().execute(
         "SELECT * FROM user WHERE id = ? AND active = 1",
         (pk,)
     )
@@ -47,7 +47,7 @@ def insert(user_dict):
             hobbies
         ) VALUES (?, ?, ?)
     """
-    cursor = get_db()
+    cursor = get_db_user()
     cursor.execute(statement, value_tuple)
     cursor.commit()
     cursor.close()
@@ -67,14 +67,14 @@ def update(pk, user_data):
         hobbies = ?
         WHERE id = ?
     """
-    cursor = get_db()
+    cursor = get_db_user()
     cursor.execute(statement, value_tuple)
     cursor.commit()
     cursor.close()
 
 
 def deactivate(pk):
-    cursor = get_db()
+    cursor = get_db_user()
     cursor.execute("UPDATE user SET active = 0 WHERE id = ?", (pk,))
     cursor.commit()
     cursor.close()
